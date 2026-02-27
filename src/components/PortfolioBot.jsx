@@ -14,25 +14,33 @@ export const PortfolioBot = () => {
   ]);
 
   const sendMessage = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || isLoading) return;
 
-    const userMessage = { role: "user", content: input };
+    const inputValue = input.trim();
+    const userMessage = { role: "user", content: inputValue };
+
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
-      });
+      const response = await fetch(
+        "https://personalportfolio-509b.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: inputValue }),
+        }
+      );
 
-      const data = await res.json();
+      const data = await response.json();
 
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.reply },
+        {
+          role: "assistant",
+          content: data.reply || "I’m here, but I didn’t get a valid response.",
+        },
       ]);
     } catch (err) {
       setMessages((prev) => [
@@ -40,7 +48,7 @@ export const PortfolioBot = () => {
         {
           role: "assistant",
           content:
-            "Sorry — I couldn’t reach the server. Make sure the backend is running.",
+            "Sorry — I couldn’t reach the server. If this is the first message, the backend may be waking up on Render (can take a bit on free tier).",
         },
       ]);
     } finally {
@@ -60,7 +68,7 @@ export const PortfolioBot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-95 max-w-[92vw] glass rounded-2xl border border-primary/30 shadow-xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[92vw] glass rounded-2xl border border-primary/30 shadow-xl flex flex-col overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <div className="font-medium">AI Portfolio Assistant</div>
