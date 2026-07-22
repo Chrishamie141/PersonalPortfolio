@@ -8,8 +8,8 @@ const projects = [
       "An AI-powered security system using computer vision to detect human presence, capture events, and log alerts for monitoring and analysis.",
     image: "/projects/project1.png",
     tags: ["Python", "AI/ML", "Raspberry Pi", "Computer Vision"],
-    link: "https://github.com/IlDannylI/AI-Intrusion-Detection-Camera",
-    github: "https://github.com/IlDannylI/AI-Intrusion-Detection-Camera",
+    link: "https://github.com/Chrishamie141/AiCamera",
+    github: "https://github.com/Chrishamie141/AiCamera",
   },
   {
     title: "SIEM & Security Monitoring Dashboard",
@@ -30,13 +30,13 @@ const projects = [
     github: "https://github.com/Chrishamie141/Garvis",
   },
   {
-    title: "Lab 2 Project",
+    title: "Health App",
     description:
-      "A hands-on course project demonstrating core programming and problem-solving skills with practical implementation and structured development.",
+      "A application that intergrates meta data from apple watch and other devices to currate a mapping of your current health trends and status.",
     image: "/projects/project4.png",
-    tags: ["Coursework", "Programming", "Problem Solving"],
-    link: "https://github.com/Chrishamie141/Lab2",
-    github: "https://github.com/Chrishamie141/Lab2",
+    tags: ["Health", "fitness", "Problem Solving"],
+    link: "https://github.com/Chrishamie141/HealthApp",
+    github: "https://github.com/Chrishamie141/HealthApp",
   },
 ];
 
